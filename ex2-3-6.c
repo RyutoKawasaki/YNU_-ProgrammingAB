@@ -11,10 +11,8 @@ int main(void) {
 
   printf("1回目の点数を入力してください\n");
   scanf("%d", &point[0]);
-
   printf("2回目の点数を入力してください\n");
   scanf("%d", &point[1]);
-
   printf("1回目の点数を入力してください\n");
   scanf("%d", &point[2]);
 

@@ -7,7 +7,7 @@ int main(void)
 
    gp=popen("gnuplot -persist","w");
 
-   fprintf(gp,"plot sin(x)\n");
+   fprintf(gp,"plot sin(x) + 1 -2\n");
 
    pclose(gp);
    return 0;
