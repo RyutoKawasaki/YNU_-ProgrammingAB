@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <math.h>
+
+int bigger(double, double);
+
+int main(void) {
+  double a, b, c;
+
+  printf("実数aを入力してください\n");
+  scanf("%lf", &a);
+  printf("実数bを入力してください\n");
+  scanf("%lf", &b);
+  printf("実数cを入力してください\n");
+  scanf("%lf", &c);
+
+  printf("a = %lf, b = %lf, c = %lfのとき\n", a, b, c);
+  printf("2次方程式 ax^2 + bx + c = 0 は\n");
+
+  if (bigger(b * b, 4 * a * c) == 0) {
+    printf("b×b(%lf) ≒ 4ac(%lf)より D ≒ 0 なので 1つの重解を持つ\n", b * b, 4 * a * c);
+  } else if (bigger(b * b, 4 * a * c) == 1) {
+    printf("b×b(%lf) > 4ac(%lf)より D > 0 なので 2つの実数解を持つ\n", b * b, 4 * a * c);
+  } else {
+    printf("b×b(%lf) < 4ac(%lf)より D < 0 なので 複素数解を持つ\n", b * b, 4 * a * c);
+  }
+
+  return 0;
+}
+
+
+int bigger(double x, double y) {
+  int int0or1or2;
+  double epsilon = 5.0e-8;
+
+  if (fabs(x - y) <= epsilon) {
+    int0or1or2 = 0;
+  } else if (x - y > epsilon) {
+    int0or1or2 = 1;
+  } else {
+    int0or1or2 = 2;
+  }
+  return int0or1or2;
+}
+
+
+/*
+[Ryuton@Ryuton-no-MacBook-Pro] ~/Projects/c/YNU_ProgAB
+❯❯ ./a.out                                                       (git)-[master]
+実数aを入力してください
+1
+実数bを入力してください
+8
+実数cを入力してください
+1
+a = 1.000000, b = 8.000000, c = 1.000000のとき
+2次方程式 ax^2 + bx + c = 0 は
+b×b(64.000000) > 4ac(4.000000)より D > 0 なので 2つの実数解を持つ
+
+[Ryuton@Ryuton-no-MacBook-Pro] ~/Projects/c/YNU_ProgAB
+❯❯ ./a.out                                                       (git)-[master]
+実数aを入力してください
+1
+実数bを入力してください
+0
+実数cを入力してください
+1
+a = 1.000000, b = 0.000000, c = 1.000000のとき
+2次方程式 ax^2 + bx + c = 0 は
+b×b(0.000000) < 4ac(4.000000)より D < 0 なので 複素数解を持つ
+
+[Ryuton@Ryuton-no-MacBook-Pro] ~/Projects/c/YNU_ProgAB
+❯❯ ./a.out                                                       (git)-[master]
+実数aを入力してください
+0
+実数bを入力してください
+0
+実数cを入力してください
+0
+a = 0.000000, b = 0.000000, c = 0.000000のとき
+2次方程式 ax^2 + bx + c = 0 は
+b×b(0.000000) ≒ 4ac(0.000000)より D ≒ 0 なので 1つの重解を持つ
+*/
